@@ -6,15 +6,17 @@
 
 Skeleton of Loader module
 
-# Authors
+# Authors (2017/2018)
+- Ángel Puerta Díaz (UO246998)
+- Sergio Domínguez Cabrero (UO250788)
+- César Álvarez Rubio (UO251069)
+- Alvaro Alonso Quijada (UO251322)
+
+# Authors (2016/2017)
 
 - Daniel Alba Muñiz (UO245188)
 - José Luis Bugallo González (UO244702)
 - Ignacio Escribano Burgos (UO227766)
 - Daniel Duque Barrientos (UO245553)
 - Rubén de la Varga Cabero (UO246977)
-- Ángel Puerta Díaz (UO246998)
-- Sergio Domínguez Cabrero (UO250788)
-- César Álvarez Rubio (UO251069)
-- Alvaro Alonso Quijada (UO251322)
 
