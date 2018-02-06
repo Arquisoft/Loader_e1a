@@ -1,4 +1,4 @@
-# citizensLoader1a
+# Loader1a
 
 [![Join the chat at https://gitter.im/Arquisoft/citizensLoader1a](https://badges.gitter.im/Arquisoft/citizensLoader1a.svg)](https://gitter.im/Arquisoft/citizensLoader1a?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/Arquisoft/citizensLoader1a.svg?branch=master)](https://travis-ci.org/Arquisoft/citizensLoader1a)
@@ -14,3 +14,8 @@ José Luis Bugallo González (UO244702)
 Ignacio Escribano Burgos (UO227766)
 Daniel Duque Barrientos (UO245553)
 Rubén de la Varga Cabero (UO246977)
+Ángel Puerta Díaz (UO246998)
+Sergio Domínguez Cabrero (UO250788)
+César Álvarez Rubio (UO251069)
+Alvaro Alonso Quijada (UO251322)
+
