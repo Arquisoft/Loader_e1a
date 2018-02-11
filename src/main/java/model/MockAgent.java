@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table (name = "Agent")
 public class MockAgent{
-	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,12 +20,14 @@ public class MockAgent{
 	
 	@Column (unique = true, nullable = false)
 	String identificador;
-	Integer tipo;
-	String nombre_tipo;
+	
+	@ManyToOne
+	MockType tipo;
+
 	
 	MockAgent(){}
 
-	public MockAgent(String nombre, String email, String identificador, Integer tipo) {
+	public MockAgent(String nombre, String email, String identificador, MockType tipo) {
 		super();
 		this.nombre = nombre;
 		this.email = email;
@@ -58,21 +59,6 @@ public class MockAgent{
 		this.email = email;
 	}
 
-	public Integer getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(Integer tipo) {
-		this.tipo = tipo;
-	}
-
-	public String getNombre_tipo() {
-		return nombre_tipo;
-	}
-
-	public void setNombre_tipo(String nombre_tipo) {
-		this.nombre_tipo = nombre_tipo;
-	}
 
 	@Override
 	public int hashCode() {
@@ -102,6 +88,15 @@ public class MockAgent{
 	public Long getId() {
 		return id;
 	}
+
+	public MockType getTipo() {
+		return tipo;
+	}
+	
+	
+	
+}
+
 	
 	
 	
