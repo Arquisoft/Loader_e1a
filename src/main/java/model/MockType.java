@@ -25,6 +25,11 @@ public class MockType {
 		this.tipo = tipo;
 		this.nombre_tipo = nombre_tipo;
 	}
+	
+	public MockType(Integer tipo) {
+		super();
+		this.tipo = tipo;
+	}
 
 
 

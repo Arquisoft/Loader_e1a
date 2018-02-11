@@ -11,9 +11,9 @@ public class TxtLetter extends Letter{
 	private Writer writer;
 
 	public void createLetter(User user) throws IOException{
-		File letter = new File("cartas/txt/" + user.getDNI() + ".txt");
+		File letter = new File("cartas/txt/" + user.getNombre() + ".txt");
 		writer = new FileWriter(letter);
-		writer.write("Usuario: " + user.getUsername() + "\n" + "Password: "
+		writer.write("Usuario: " + user.getNombre() + "\n" + "Password: "
 				+ user.getPassword());
 	}
 }

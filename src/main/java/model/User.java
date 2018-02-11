@@ -32,21 +32,30 @@ public class User implements Serializable {
 	User() {
 	}
 
-	public User(String nombre, String localizacion, String email, String identificador, MockType tipo) {
+	public User(String nombre, String localizacion, String email, String identificador, String tipo) {
 		setNombre(nombre);
 		setLocalizacion(localizacion);
 		setEmail(email);
 		this.identificador = identificador;
-		this.tipo = tipo;
+		this.tipo = setTipo(tipo);
 		generarPassword();
 	}
 	
-	public User(String nombre, String email, String identificador, MockType tipo) {
+	public User(String nombre, String email, String identificador, String tipo) {
 		setNombre(nombre);
 		setEmail(email);
 		this.identificador = identificador;
-		this.tipo = tipo;
+		this.tipo = setTipo(tipo);
 		generarPassword();
+	}
+	
+	public String getIdentificador() {
+		return identificador;
+	}
+	
+	private MockType setTipo(String tipo) {
+		String[] value= tipo.split(",");
+		return new MockType(Integer.valueOf(value[0]), value[1]);
 	}
 
 	public String getNombre() {

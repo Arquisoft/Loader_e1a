@@ -28,13 +28,13 @@ public class InsertP implements Insert {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			if (!UserFinder.findByDNI(user.getDNI()).isEmpty()) {
+			if (!UserFinder.findByDNI(user.getNombre()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El usuario con el dni " + user.getDNI() + " ya existe en la base de datos");
+						"El usuario con el nombre " + user.getNombre() + " ya existe en la base de datos");
 				trx.rollback();
 			} else if (!UserFinder.findByEmail(user.getEmail()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"Ya existe un usuario con el email " + user.getEmail() + " en la base de datos");
+						"Ya existe un usuario con el identificador " + user.getIdentificador() + " en la base de datos");
 				trx.rollback();
 			} else {
 				Jpa.getManager().persist(user);

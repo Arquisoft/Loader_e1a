@@ -16,11 +16,11 @@ public class PdfLetter extends Letter{
 		document = null;
 		FileOutputStream letter = null;
 		letter = new FileOutputStream(
-				"cartas/pdf/" + user.getDNI() + ".pdf");
+				"cartas/pdf/" + user.getNombre() + ".pdf");
 		document = new Document();
 		PdfWriter.getInstance(document, letter);
 		document.open();
-		document.add(new Paragraph("Usuario: " + user.getUsername()
+		document.add(new Paragraph("Usuario: " + user.getNombre()
 				+ "\n Password: " + user.getPassword()));
 		document.close();
 	}
