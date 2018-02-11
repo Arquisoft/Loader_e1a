@@ -5,67 +5,46 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "Agent")
-public class MockAgent{
-	@Id 
+@Table(name = "AgentType")
+public class MockType {
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String nombre;
-	@Column (nullable = true)
-	private String localizacion;
-	private String email;
+	private Long Id;
 	
 	@Column (unique = true, nullable = false)
-	String identificador;
+	Integer tipo;
+	String nombre_tipo;
 	
-	@ManyToOne
-	MockType tipo;
+	MockType(){}
 
-	
-	MockAgent(){}
-
-	public MockAgent(String nombre, String email, String identificador, MockType tipo) {
+	public MockType(Integer tipo, String nombre_tipo) {
 		super();
-		this.nombre = nombre;
-		this.email = email;
-		this.identificador = identificador;
 		this.tipo = tipo;
+		this.nombre_tipo = nombre_tipo;
 	}
 
-	public String getNombre() {
-		return nombre;
+
+
+	public Long getId() {
+		return Id;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Integer getTipo() {
+		return tipo;
 	}
 
-	public String getLocalizacion() {
-		return localizacion;
+	public String getNombre_tipo() {
+		return nombre_tipo;
 	}
-
-	public void setLocalizacion(String localizacion) {
-		this.localizacion = localizacion;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((identificador == null) ? 0 : identificador.hashCode());
+		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
 
@@ -77,25 +56,15 @@ public class MockAgent{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MockAgent other = (MockAgent) obj;
-		if (identificador == null) {
-			if (other.identificador != null)
+		MockType other = (MockType) obj;
+		if (tipo == null) {
+			if (other.tipo != null)
 				return false;
-		} else if (!identificador.equals(other.identificador))
+		} else if (!tipo.equals(other.tipo))
 			return false;
 		return true;
 	}
+	
+	
 
-	public Long getId() {
-		return id;
-	}
-
-	public MockType getTipo() {
-		return tipo;
-	}
-	
-	
-	
 }
-
-	
