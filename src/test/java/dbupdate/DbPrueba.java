@@ -2,14 +2,13 @@ package dbupdate;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import org.junit.Test;
 
 import model.MockAgent;
+import model.MockType;
 import persistence.util.Jpa;
 
 public class DbPrueba {
@@ -20,8 +19,11 @@ public class DbPrueba {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		
-		MockAgent user = new MockAgent("Auxiliar", "auxiliar@uniovi.es", "aux345543", 2);
+		MockType tipo = new MockType(1, "aux");
+		MockAgent user = new MockAgent("Auxiliar", "auxiliar@uniovi.es", "aux345543", tipo);
 		
+		
+		mapper.persist(tipo);
 		mapper.persist(user);
 		
 		trx.commit();
