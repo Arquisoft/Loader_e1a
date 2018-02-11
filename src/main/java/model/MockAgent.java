@@ -35,6 +35,16 @@ public class MockAgent{
 		this.identificador = identificador;
 		this.tipo = tipo;
 	}
+	
+	public MockAgent(String nombre, String localizacion, String email, String identificador, MockType tipo) {
+		super();
+		this.nombre = nombre;
+		this.localizacion = localizacion;
+		this.email = email;
+		this.identificador = identificador;
+		this.tipo = tipo;
+	}
+	
 
 	public String getNombre() {
 		return nombre;
