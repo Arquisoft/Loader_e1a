@@ -1,9 +1,8 @@
 package modeltest;
 
-import static org.junit.Assert.*;
-
-import java.util.Date;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 import model.User;
 
 import org.junit.Test;
@@ -12,11 +11,10 @@ public class UserTest {
 
 	@Test
 	public void testEquals() {
-		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
-		User user2 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
-		User user3 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7787777R");
-		User user4 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", null);
+		User user1 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7777777R", "1, Person");
+		User user2 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7777777R", "1, Person");
+		User user3 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7787777R", "1, Person");
+		User user4 = new User("Dani", "C\\Buenavida", "email@gmail.com", null, "1, Person");
 
 		assertEquals(true, user1.equals(user2));
 		assertEquals(true, user3.equals(user3));
@@ -28,12 +26,11 @@ public class UserTest {
 
 	@Test
 	public void testHashCode() {
-		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
-		User user2 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
-		User user3 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7787777R");
-		User user4 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", null);
-		User user5 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", null);
+		User user1 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7777777R", "1, Person");
+		User user2 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7777777R", "1, Person");
+		User user3 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7787777R", "1, Person");
+		User user4 = new User("Dani", "C\\Buenavida", "email@gmail.com", null, "1, Person");
+		User user5 = new User("Dani", "C\\Buenavida", "email@gmail.com", null, "1, Person");
 
 		assertEquals(user1.hashCode(), user2.hashCode());
 		assertEquals(user4.hashCode(), user5.hashCode());
@@ -44,23 +41,19 @@ public class UserTest {
 
 	@Test
 	public void testAll() {
-		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Dani", "Duque", "email@gmail.com", date, "C\\Buenavida", "Español", "7777777R");
+		User user1 = new User("Dani", "C\\Buenavida", "email@gmail.com", "7777777R", "1, Person");
 
 		String password = user1.getPassword();
-		String userName = user1.getUsername();
-		String toString = "User [id =null, nombre=Dani, apellidos=Duque, email=email@gmail.com, fechaNacimiento=" + date
-				+ ", direccionPostal=C\\Buenavida, nacionalidad=Español, DNI=7777777R]";
+		String userName = user1.getNombre();
+		String toString = "User [nombre=Dani, localizacion=C\\Buenavida, email=email@gmail.com,"
+				+ " identificador=7777777R, tipo=model.MockType@20]";
 
 		assertEquals("Dani", user1.getNombre());
-		assertEquals("Duque", user1.getApellidos());
 		assertEquals("email@gmail.com", user1.getEmail());
-		assertEquals(date, user1.getFechaNacimiento());
-		assertEquals("C\\Buenavida", user1.getDireccionPostal());
-		assertEquals("Español", user1.getNacionalidad());
-		assertEquals("7777777R", user1.getDNI());
+		assertEquals("C\\Buenavida", user1.getLocalizacion());
+		assertEquals("7777777R", user1.getIdentificador());
 		assertEquals(password, user1.getPassword());
-		assertEquals(userName, user1.getUsername());
+		assertEquals(userName, user1.getNombre());
 		assertEquals(toString, user1.toString());
 	}
 

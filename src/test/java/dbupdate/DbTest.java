@@ -1,33 +1,33 @@
 package dbupdate;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import model.User;
+
 import org.junit.After;
 import org.junit.Test;
+
+import persistence.UserFinder;
+import persistence.util.Jpa;
 
 import com.lowagie.text.DocumentException;
 
 import executer.ActionSingleton;
-import model.User;
-import persistence.UserFinder;
-import persistence.util.Jpa;
 
 public class DbTest {
 
 	@Test
 	public void usuarioYaExistenteDni() throws FileNotFoundException, DocumentException, IOException {
 		ActionSingleton aS = ActionSingleton.getInstance();
-		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
-		User user2 = new User("Paco", "Francisco", "franci@gmail.com", date, "C\\Uría", "Español", "87654321P");
+		User user1 = new User("Paco", "C\\Uría", "francisco@gmail.com", "87654321P", "1, Person");
+		User user2 = new User("Paco", "C\\Uría", "franci@gmail.com", "87654321P", "1, Person");
 
 		aS.getAF().saveData(user1);
 		aS.getAF().saveData(user2);
@@ -46,9 +46,8 @@ public class DbTest {
 	@Test
 	public void usuarioYaExistenteEmail() throws FileNotFoundException, DocumentException, IOException {
 		ActionSingleton aS = ActionSingleton.getInstance();
-		Date date = new Date(System.currentTimeMillis());
-		User user1 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654321P");
-		User user3 = new User("Paco", "Francisco", "francisco@gmail.com", date, "C\\Uría", "Español", "87654353Y");
+		User user1 = new User("Paco", "francisco@gmail.com", "87654321P", "1, Person");
+		User user3 = new User("Paco", "francisco@gmail.com", "87654353Y", "1, Person");
 
 		aS.getAF().saveData(user1);
 		aS.getAF().saveData(user3);
@@ -58,7 +57,7 @@ public class DbTest {
 		trx.begin();
 
 		List<User> test = UserFinder.findByEmail("francisco@gmail.com");
-		assertEquals(test.get(0).getDNI(), "87654321P");
+		assertEquals(test.get(0).getIdentificador(), "87654321P");
 
 		trx.commit();
 		mapper.close();
