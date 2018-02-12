@@ -53,6 +53,10 @@ public class User implements Serializable {
 		return identificador;
 	}
 	
+	public MockType getTipo() {
+		return this.tipo;
+	}
+	
 	private MockType setTipo(String tipo) {
 		String[] value= tipo.split(",");
 		return new MockType(Integer.valueOf(value[0]), value[1]);

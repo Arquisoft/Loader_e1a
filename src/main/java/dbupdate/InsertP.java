@@ -38,6 +38,7 @@ public class InsertP implements Insert {
 				trx.rollback();
 			} else {
 				Jpa.getManager().persist(user);
+				Jpa.getManager().persist(user.getTipo());
 				trx.commit();
 				Letter letter = new PdfLetter();
 				letter.createLetter(user);

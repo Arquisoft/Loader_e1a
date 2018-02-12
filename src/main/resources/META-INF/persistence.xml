@@ -23,6 +23,17 @@
 			<property name = "javax.persistence.jdbc.url" value = "jdbc:hsqldb:hsql://localhost"/>
 			<property name ="javax.persistence.jdbc.user" value="sa"/> 
 			<property name ="javax.persistence.jdbc.password" value =""/>
+			
+			<!--  
+			Base externa actual
+			<property name="javax.persistence.jdbc.driver" 
+					  value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" 
+					  value="jdbc:mysql://sql11.freesqldatabase.com:3306/sql11220937" />
+			<property name="javax.persistence.jdbc.user" value="sql11220937" />
+			<property name="javax.persistence.jdbc.password" value="wxp8GGPK1H" />
+			-->
+			
 			<property name="hibernate.dialect" 
 					  value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.show_sql" value="true" />
