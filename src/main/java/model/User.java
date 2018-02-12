@@ -99,7 +99,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MockAgent other = (MockAgent) obj;
+		User other = (User) obj;
 		if (identificador == null) {
 			if (other.identificador != null)
 				return false;
@@ -110,7 +110,8 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [nombre=" + nombre + ", localizacion=" + localizacion + ", email=" + email + ", identificador=" + identificador + ", tipo=" + tipo + "]";
+		return "User [nombre=" + nombre + ", localizacion=" + localizacion + ", email=" + email + ", password="
+				+ password + ", identificador=" + identificador + ", tipo=" + tipo + "]";
 	}
 
 	private void generarPassword() {

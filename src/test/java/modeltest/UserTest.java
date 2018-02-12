@@ -45,8 +45,8 @@ public class UserTest {
 
 		String password = user1.getPassword();
 		String userName = user1.getNombre();
-		String toString = "User [nombre=Dani, localizacion=C\\Buenavida, email=email@gmail.com,"
-				+ " identificador=7777777R, tipo=model.MockType@20]";
+		String toString = "User [nombre=Dani, localizacion=C\\Buenavida, email=email@gmail.com, password=" 
+		+ user1.getPassword()+ ", identificador=7777777R, tipo=MockType [tipo=1, nombre_tipo= Person]]";
 
 		assertEquals("Dani", user1.getNombre());
 		assertEquals("email@gmail.com", user1.getEmail());

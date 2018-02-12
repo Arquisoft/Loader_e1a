@@ -69,7 +69,11 @@ public class MockType {
 			return false;
 		return true;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "MockType [tipo=" + tipo + ", nombre_tipo=" + nombre_tipo + "]";
+	}
 	
 
 }
