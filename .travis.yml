@@ -1,6 +1,7 @@
 language: java
+script: "mvn install"
 jdk:
-- oraclejdk8
+- oraclejdk9
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 before_script:
