@@ -19,7 +19,7 @@ public class DbPrueba {
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		
-		MockType tipo = new MockType(1, "aux");
+		MockType tipo = new MockType(5, "aux");
 		MockAgent user = new MockAgent("Auxiliar", "auxiliar@uniovi.es", "aux345543", tipo);
 		
 		
