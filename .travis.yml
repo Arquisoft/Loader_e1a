@@ -1,5 +1,5 @@
 language: java
-script: "mvn test"
+script: "mvn installt"
 jdk:
 - oraclejdk8
 after_success:
