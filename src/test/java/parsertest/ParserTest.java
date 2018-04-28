@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
 import parser.*;
-import persistence.UserFinder;
+import persistence.AgentFinder;
 import persistence.util.Jpa;
 
 import static org.junit.Assert.*;
@@ -18,7 +18,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import com.lowagie.text.DocumentException;
-import model.User;
+import model.Agent;
 
 public class ParserTest {
 
@@ -27,11 +27,11 @@ public class ParserTest {
 		RList ex = new RList();
 		ex.load("src/test/resources/test.xlsx");
 
-		assertEquals(ex.getAllUsers().size(), 3);
+		assertEquals(ex.getAllAgents().size(), 6);
 
-		List<XSSFCell> list1 = ex.getAllUsers().get(0);
-		List<XSSFCell> list2 = ex.getAllUsers().get(1);
-		List<XSSFCell> list3 = ex.getAllUsers().get(2);
+		List<XSSFCell> list1 = ex.getAllAgents().get(0);
+		List<XSSFCell> list2 = ex.getAllAgents().get(1);
+		List<XSSFCell> list3 = ex.getAllAgents().get(2);
 		StringBuilder st = new StringBuilder();
 
 		for (int i = 0; i < list1.size(); i++) {
@@ -39,7 +39,7 @@ public class ParserTest {
 				st.append(list1.get(i).toString() + " ");
 		}
 
-		assertEquals(st.toString(), "Juan Torres Pardo juan@example.com C/ Federico García Lorca 2 Español 90500084Y ");
+		assertEquals(st.toString(), "Juan C/ Federico García Lorca 2 juan@example.com Entity ");
 
 		st = new StringBuilder();
 
@@ -48,7 +48,7 @@ public class ParserTest {
 				st.append(list2.get(i).toString() + " ");
 		}
 
-		assertEquals(st.toString(), "Luis López Fernando luis@example.com C/ Real Oviedo 2 Español 19160962F ");
+		assertEquals(st.toString(), "Luis C/ Real Oviedo 2 luis@example.com Person ");
 
 		st = new StringBuilder();
 
@@ -57,7 +57,7 @@ public class ParserTest {
 				st.append(list3.get(i).toString() + " ");
 		}
 
-		assertEquals(st.toString(), "Ana Torres Pardo ana@example.com Av. De la Constitución 8 Español 09940449X ");
+		assertEquals(st.toString(), "Ana Av. De la Constitución 8 ana@example.com Sensor ");
 	}
 
 	@Test(expected = FileNotFoundException.class)
@@ -65,11 +65,11 @@ public class ParserTest {
 		RList ex = new RList();
 		ex.load("src/test/resources/fallo.xlsx");
 
-		assertEquals(ex.getAllUsers().size(), 3);
+		assertEquals(ex.getAllAgents().size(), 3);
 
-		List<XSSFCell> list1 = ex.getAllUsers().get(0);
-		List<XSSFCell> list2 = ex.getAllUsers().get(1);
-		List<XSSFCell> list3 = ex.getAllUsers().get(2);
+		List<XSSFCell> list1 = ex.getAllAgents().get(0);
+		List<XSSFCell> list2 = ex.getAllAgents().get(1);
+		List<XSSFCell> list3 = ex.getAllAgents().get(2);
 		StringBuilder st = new StringBuilder();
 
 		for (int i = 0; i < list1.size(); i++) {
@@ -103,11 +103,11 @@ public class ParserTest {
 		RList ex = new RList();
 		ex.load("src/test/resources/vacio.xlsx");
 
-		assertEquals(ex.getAllUsers().size(), 3);
+		assertEquals(ex.getAllAgents().size(), 3);
 
-		List<XSSFCell> list1 = ex.getAllUsers().get(0);
-		List<XSSFCell> list2 = ex.getAllUsers().get(1);
-		List<XSSFCell> list3 = ex.getAllUsers().get(2);
+		List<XSSFCell> list1 = ex.getAllAgents().get(0);
+		List<XSSFCell> list2 = ex.getAllAgents().get(1);
+		List<XSSFCell> list3 = ex.getAllAgents().get(2);
 		StringBuilder st = new StringBuilder();
 
 		for (int i = 0; i < list1.size(); i++) {
@@ -152,15 +152,15 @@ public class ParserTest {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
-		List<User> aBorrar = UserFinder.findByDNI("09940449X");
+		List<Agent> aBorrar = AgentFinder.findByDNI("09940449X");
 		if (!aBorrar.isEmpty())
 			Jpa.getManager().remove(aBorrar.get(0));
 
-		aBorrar = UserFinder.findByDNI("19160962F");
+		aBorrar = AgentFinder.findByDNI("19160962F");
 		if (!aBorrar.isEmpty())
 			Jpa.getManager().remove(aBorrar.get(0));
 
-		aBorrar = UserFinder.findByDNI("90500084Y");
+		aBorrar = AgentFinder.findByDNI("90500084Y");
 		if (!aBorrar.isEmpty())
 			Jpa.getManager().remove(aBorrar.get(0));
 

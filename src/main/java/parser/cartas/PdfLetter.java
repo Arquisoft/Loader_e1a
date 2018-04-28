@@ -8,20 +8,20 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
-import model.User;
+import model.Agent;
 
 public class PdfLetter extends Letter{
 	private Document document;
-	public  void createLetter(User user) throws DocumentException, FileNotFoundException{
+	public  void createLetter(Agent Agent) throws DocumentException, FileNotFoundException{
 		document = null;
 		FileOutputStream letter = null;
 		letter = new FileOutputStream(
-				"cartas/pdf/" + user.getIdentificador() + ".pdf");
+				"cartas/pdf/" + Agent.getIdentifier() + ".pdf");
 		document = new Document();
 		PdfWriter.getInstance(document, letter);
 		document.open();
-		document.add(new Paragraph("Usuario: " + user.getNombre()
-				+ "\n Password: " + user.getPassword()));
+		document.add(new Paragraph("Usuario: " + Agent.getNombre()
+				+ "\n Password: " + Agent.getPassword()));
 		document.close();
 	}
 }

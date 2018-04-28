@@ -21,12 +21,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.lowagie.text.DocumentException;
 
 import executer.*;
-import model.User;
+import model.Agent;
 
 
 public class RList implements ReadList {
 	private ActionFacade aF = new ActionFacadeClass();
-	private ArrayList<List<XSSFCell>> allUsers;
+	private ArrayList<List<XSSFCell>> allAgents;
 
 	/**
 	 * Lee el fichero excel de la ruta pasada por parametro Si el fichero no
@@ -46,7 +46,7 @@ public class RList implements ReadList {
 	public void load(String path) throws FileNotFoundException, DocumentException{
 		InputStream excelFile = null;
 		XSSFWorkbook excel = null;
-		allUsers = new ArrayList<List<XSSFCell>>();
+		allAgents = new ArrayList<List<XSSFCell>>();
 		int i = 0;
 		try {
 			excelFile = new FileInputStream(path);
@@ -68,7 +68,7 @@ public class RList implements ReadList {
 						System.out.print(cell.toString() + " ; ");
 					}
 					System.out.println();
-					allUsers.add(user);
+					allAgents.add(user);
 					crearUsuarios(user);
 				}
 				i++;
@@ -107,12 +107,15 @@ public class RList implements ReadList {
 	}
 
 	private void crearUsuarios(List<XSSFCell> list) throws FileNotFoundException, DocumentException, IOException {
-		User user;
+		Agent user;
+		if(list.size()<4) {
+			return;
+		}
 		if (list.size() == 4) {
-		user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+		user = new Agent(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 				list.get(2).getStringCellValue(), list.get(3).getStringCellValue());
 		} else {
-			user = new User(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
+			user = new Agent(list.get(0).getStringCellValue(), list.get(1).getStringCellValue(),
 				list.get(2).getStringCellValue(), list.get(3).getStringCellValue(), list.get(4).getStringCellValue());
 		}
 		InsertR insert = new InsertR();
@@ -120,8 +123,8 @@ public class RList implements ReadList {
 		//getaF().saveData(user);
 	}
 	
-	public ArrayList<List<XSSFCell>> getAllUsers(){
-		return allUsers;
+	public ArrayList<List<XSSFCell>> getAllAgents(){
+		return allAgents;
 	}
 
 }

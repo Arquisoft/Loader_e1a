@@ -11,41 +11,41 @@ import javax.persistence.PersistenceException;
 
 import com.lowagie.text.DocumentException;
 
-import model.User;
+import model.Agent;
 import parser.cartas.Letter;
 import parser.cartas.PdfLetter;
 import parser.cartas.TxtLetter;
 import parser.cartas.WordLetter;
-import persistence.UserFinder;
+import persistence.AgentFinder;
 import persistence.util.Jpa;
 import reportwriter.ReportWriter;
 
 public class InsertP implements Insert {
 
 	@Override
-	public User save(User user) throws FileNotFoundException, DocumentException, IOException {
+	public Agent save(Agent Agent) throws FileNotFoundException, DocumentException, IOException {
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		try {
-			if (!UserFinder.findByDNI(user.getNombre()).isEmpty()) {
+			if (!AgentFinder.findByDNI(Agent.getNombre()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"El usuario con el nombre " + user.getNombre() + " ya existe en la base de datos");
+						"El usuario con el nombre " + Agent.getNombre() + " ya existe en la base de datos");
 				trx.rollback();
-			} else if (!UserFinder.findByEmail(user.getEmail()).isEmpty()) {
+			} else if (!AgentFinder.findByEmail(Agent.getEmail()).isEmpty()) {
 				ReportWriter.getInstance().getWriteReport().log(Level.WARNING,
-						"Ya existe un usuario con el identificador " + user.getIdentificador() + " en la base de datos");
+						"Ya existe un usuario con el identificador " + Agent.getIdentifier() + " en la base de datos");
 				trx.rollback();
 			} else {
-				Jpa.getManager().persist(user);
-				Jpa.getManager().persist(user.getTipo());
+				Jpa.getManager().persist(Agent);
+				//Jpa.getManager().persist(Agent.getKind());
 				trx.commit();
 				Letter letter = new PdfLetter();
-				letter.createLetter(user);
+				letter.createLetter(Agent);
 				letter = new TxtLetter();
-				letter.createLetter(user);
+				letter.createLetter(Agent);
 				letter = new WordLetter();
-				letter.createLetter(user);
+				letter.createLetter(Agent);
 			}
 		} catch (PersistenceException ex) {
 			ReportWriter.getInstance().getWriteReport().log(Level.WARNING, "Error de la BBDD");
@@ -55,16 +55,16 @@ public class InsertP implements Insert {
 			if (mapper.isOpen())
 				mapper.close();
 		}
-		return user;
+		return Agent;
 	}
 
 	@Override
-	public List<User> findByDNI(String dni) {
-		return UserFinder.findByDNI(dni);
+	public List<Agent> findByDNI(String dni) {
+		return AgentFinder.findByDNI(dni);
 	}
 
 	@Override
-	public List<User> findByEmail(String email) {
-		return UserFinder.findByEmail(email);
+	public List<Agent> findByEmail(String email) {
+		return AgentFinder.findByEmail(email);
 	}
 }

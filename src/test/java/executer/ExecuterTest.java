@@ -8,11 +8,11 @@ import java.io.IOException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import model.User;
+import model.Agent;
 
 import org.junit.Test;
 
-import persistence.UserFinder;
+import persistence.AgentFinder;
 import persistence.util.Jpa;
 
 import com.lowagie.text.DocumentException;
@@ -26,17 +26,17 @@ public class ExecuterTest {
 		
 		assertEquals(aS, aS2);
 		
-		User user = new User("Paco", "C\\Uría", "francisco@gmail.com", "87654321P", "1, Person");
+		Agent Agent = new Agent("Paco", "C\\Uría", "francisco@gmail.com", "87654321P", "Person");
 		
-		aS.getAF().saveData(user);
+		aS.getAF().saveData(Agent);
 		
 		EntityManager mapper = Jpa.createEntityManager();
 		EntityTransaction trx = mapper.getTransaction();
 		trx.begin();
 		
-		User user2 = UserFinder.findByEmail("francisco@gmail.com").get(0);
+		Agent Agent2 = AgentFinder.findByEmail("francisco@gmail.com").get(0);
 		
-		assertEquals(user, user2);
+		assertEquals(Agent, Agent2);
 		
 		trx.commit();
 		
