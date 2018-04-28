@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.IIOException;
+
 public class FilesManager {
 
 	private static Map<String, Integer> kindCodes;
@@ -32,12 +34,16 @@ public class FilesManager {
 	
 	private static void getKindcodes() throws IOException {
 		Map<String, Integer> map = new HashMap<String, Integer>();
+		
 		try (BufferedReader br = new BufferedReader(new FileReader("tipos.csv"))) {
 			while (br.ready()) {
 				String[] line = br.readLine().split(",");
 				map.put(line[1], Integer.parseInt(line[0]));
 			}
-			kindCodes = map;
+			kindCodes = map;}
+		
+	 catch(IOException e){
+		  e.printStackTrace();
 		}
 	}
 
