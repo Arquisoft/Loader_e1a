@@ -1,6 +1,7 @@
 package util;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -35,11 +36,13 @@ public class FilesManager {
 	private static void getKindcodes() throws IOException {
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		
-		try (BufferedReader br = new BufferedReader(new FileReader("tipos.csv"))) {
+		try {
+			BufferedReader br = new BufferedReader(new FileReader("tipos.csv")); 	
 			while (br.ready()) {
 				String[] line = br.readLine().split(",");
 				map.put(line[1], Integer.parseInt(line[0]));
 			}
+			br.close();
 			kindCodes = map;}
 		
 	 catch(IOException e){
